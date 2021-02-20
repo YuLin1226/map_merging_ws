@@ -3,5 +3,10 @@
 <launch>
     <!-- keyboard teleop -->
     <node name="teleop_twist_keyboard" pkg="solabot_navigation" type="teleop_twist_keyboard.py" />
+    <node pkg="solabot_navigation" name="fake_odom" type="cal_odom.py">
+        <param name="init_X"   value="1.0"/>
+        <param name="init_Y"   value="1.0"/>
+        <param name="init_YAW" value="1.0"/>
+    </node>
 </launch>
 
