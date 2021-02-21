@@ -45,7 +45,12 @@
 
     <!-- ODOMETRY - ideal -->	
     <!-- keyboard teleop -->
-      <node name="gazebo_odometry" pkg="cb_gazebo" type="gazebo_odometry.py" />
+      <!-- <node name="gazebo_odometry" pkg="cb_gazebo" type="gazebo_odometry.py" /> -->
+      <node name="gazebo_odometry" pkg="solabot_navigation" type="cal_odom.py">
+        <param name="init_X"   value="1.0"/>
+        <param name="init_Y"   value="1.0"/>
+        <param name="init_YAW" value="1.0"/>
+      </node>
     <!-- /ODOMETRY -->
 
     <!-- STATIC TF setting -->
