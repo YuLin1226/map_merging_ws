@@ -13,8 +13,8 @@
     <!-- <include file="$(find solabot_navigation)/launch/solabot_core.launch" /> -->
     <include file="$(find solabot_navigation)/launch/solabot_core_sim.launch"> 
         <arg name="init_pose_X" value="-2" />
-        <arg name="init_pose_Y" value="3" />
-        <arg name="init_pose_YAW" value="2" />
+        <arg name="init_pose_Y" value="-3" />
+        <arg name="init_pose_YAW" value="3" />
     </include>
 
     <!-- gmapping -->
