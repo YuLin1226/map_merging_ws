@@ -11,12 +11,16 @@
     <!-- # Actually rf2o and robot_localization will not be used-->
     <!-- # Since gmapping has its own localization method-->
     <!-- <include file="$(find solabot_navigation)/launch/solabot_core.launch" /> -->
-    <include file="$(find solabot_navigation)/launch/solabot_core_sim.launch" />
+    <include file="$(find solabot_navigation)/launch/solabot_core_sim.launch"> 
+        <arg name="init_pose_X" value="-2" />
+        <arg name="init_pose_Y" value="3" />
+        <arg name="init_pose_YAW" value="0" />
+    </include>
 
     <!-- gmapping -->
     <include file="$(find solabot_navigation)/launch/includes/gmapping.xml" />
     
     <!-- Rviz -->
-    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find solabot_navigation)/rviz_cfg/gmapping.rviz" if="$(arg use_rviz)"/> -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find solabot_navigation)/rviz_cfg/gmapping.rviz" if="$(arg use_rviz)"/>
 
 </launch>

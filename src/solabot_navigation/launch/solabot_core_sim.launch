@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 
 <launch>
-
+    <arg name="init_pose_X" default=""/>
+    <arg name="init_pose_Y" default=""/>
+    <arg name="init_pose_YAW" default=""/>
+    
     <!-- SENSORS -->    
 		<!-- HOKUYO -->
 		<!-- done on Rpi-->
@@ -47,9 +50,9 @@
     <!-- keyboard teleop -->
       <!-- <node name="gazebo_odometry" pkg="cb_gazebo" type="gazebo_odometry.py" /> -->
       <node name="gazebo_odometry" pkg="solabot_navigation" type="cal_odom.py">
-        <param name="init_X"   value="1.0"/>
-        <param name="init_Y"   value="1.0"/>
-        <param name="init_YAW" value="1.0"/>
+        <param name="init_X"   value="$(arg init_pose_X)"/>
+        <param name="init_Y"   value="$(arg init_pose_Y)"/>
+        <param name="init_YAW" value="$(arg init_pose_YAW)"/>
       </node>
     <!-- /ODOMETRY -->
 
