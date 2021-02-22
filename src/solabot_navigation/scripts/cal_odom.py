@@ -7,7 +7,8 @@ from geometry_msgs.msg import PoseStamped, Transform, TransformStamped
 from geometry_msgs.msg import Point, Pose, Quaternion, Twist, Vector3
 import tf_conversions
 import tf2_ros
-
+import numpy as np
+import math
 
 class ODOM:
     def __init__(self, InitCond):
@@ -21,8 +22,7 @@ class ODOM:
         
 
     def _sub_callback(self, msg):
-        self.x = msg.pose.pose.position.x - self.x0
-        self.y = msg.pose.pose.position.y - self.y0
+        
         quaternion = (  msg.pose.pose.orientation.x,
                         msg.pose.pose.orientation.y,
                         msg.pose.pose.orientation.z,
@@ -30,6 +30,11 @@ class ODOM:
         )
         euler = tf_conversions.transformations.euler_from_quaternion(quaternion)
         self.yaw = euler[2] - self.yaw0
+
+        dx = msg.pose.pose.position.x - self.x0
+        dy = msg.pose.pose.position.y - self.y0
+
+        self.x, self.y = self._tf_rotation(theta=self.yaw0, point=[dx, dy])
 
         self.publish_odom()
         
@@ -61,7 +66,19 @@ class ODOM:
         self.odom_tf.sendTransform(tf)
 
 
+    def _tf_rotation(self, theta, point):
 
+        c, s = math.cos(theta), math.sin(theta)
+        R = np.array([
+            [ +c, +s],
+            [ -s, +c]
+        ])
+        v = np.array([
+            [point[0]],
+            [point[1]]
+        ])
+        v_rot = R.dot(v)
+        return v_rot[0], v_rot[1]
 
 
 if __name__ == '__main__':

@@ -14,7 +14,7 @@
     <include file="$(find solabot_navigation)/launch/solabot_core_sim.launch"> 
         <arg name="init_pose_X" value="-2" />
         <arg name="init_pose_Y" value="3" />
-        <arg name="init_pose_YAW" value="0" />
+        <arg name="init_pose_YAW" value="1.5709" />
     </include>
 
     <!-- gmapping -->
