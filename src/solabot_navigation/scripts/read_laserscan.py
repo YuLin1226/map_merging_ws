@@ -13,13 +13,13 @@ class readLaserscan:
     def __init__(self):
         rospy.init_node('read_laserscan')
         # get angle deviation
-        self.angle_deviation = rospy.get_param('~angle_deviation')
-        self.x_deviation = rospy.get_param('~x_deviation')
-        self.y_deviation = rospy.get_param('~y_deviation')
+        # self.angle_deviation = rospy.get_param('~angle_deviation')
+        # self.x_deviation = rospy.get_param('~x_deviation')
+        # self.y_deviation = rospy.get_param('~y_deviation')
         # define publisher and subscriber
-        self.pub = rospy.Publisher('/laser_xy', numpy_msg(Floats), queue_size=10)
-        self.rate = rospy.Rate(10)
-        self.sub = rospy.Subscriber('/scan', LaserScan, self.callback)
+        # self.pub = rospy.Publisher('/laser_xy', numpy_msg(Floats), queue_size=10)
+        # self.rate = rospy.Rate(10)
+        self.sub = rospy.Subscriber('/front/scan', LaserScan, self.callback)
         rospy.spin()
 
     def callback(self, msg):
@@ -28,15 +28,18 @@ class readLaserscan:
         # [i]*0.352 : point angle
         self.data = msg.ranges
 
-        for i in range( len(self.data) ): 
-            self.angle = ((i-341)*0.352)*math.pi/180 + self.angle_deviation
-            self.radius = self.data[i]
-            if self.radius < 5:
-                self.y = math.sin(self.angle) * self.radius + self.y_deviation
-                self.x = math.cos(self.angle) * self.radius + self.x_deviation
-                # print([self.x, self.y])
-                self.xy = numpy.array([self.x, self.y], dtype = numpy.float32)
-                self.pub.publish(self.xy)
+        num_scan = len(self.data)
+        print(num_scan)
+        print(self.data[341])
+        # for i in range( len(self.data) ): 
+        #     self.angle = ((i-341)*0.352)*math.pi/180 + self.angle_deviation
+        #     self.radius = self.data[i]
+        #     if self.radius < 5:
+        #         self.y = math.sin(self.angle) * self.radius + self.y_deviation
+        #         self.x = math.cos(self.angle) * self.radius + self.x_deviation
+        #         # print([self.x, self.y])
+        #         self.xy = numpy.array([self.x, self.y], dtype = numpy.float32)
+        #         self.pub.publish(self.xy)
 
 
 if __name__ == "__main__":

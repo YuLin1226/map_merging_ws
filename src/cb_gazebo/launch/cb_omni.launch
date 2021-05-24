@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="world_name" default="indoors12" />
+  <!-- <arg name="world_name" default="indoors12" /> -->
+  <arg name="world_name" default="test" />
   <arg name="gui" default="true" />
   <arg name="run_camera" default="false"/>
 
@@ -13,7 +14,7 @@
 
   <!-- BEGIN ROBOT-->
   <include file="$(find cb_gazebo)/launch/one_car.launch" >
-    <arg name="init_pose" value="-x -2 -y -3 -z 0 -Y 3" />
+    <arg name="init_pose" value="-x 0 -y 0 -z 0 -Y 0" />
     <arg name="robot_name" value="" />
   </include>
 
