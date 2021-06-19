@@ -12,9 +12,9 @@
     <!-- # Since gmapping has its own localization method-->
     <!-- <include file="$(find solabot_navigation)/launch/solabot_core.launch" /> -->
     <include file="$(find solabot_navigation)/launch/solabot_core_sim.launch"> 
-        <arg name="init_pose_X" value="-2" />
-        <arg name="init_pose_Y" value="-3" />
-        <arg name="init_pose_YAW" value="3" />
+        <arg name="init_pose_X" value="0" />
+        <arg name="init_pose_Y" value="0" />
+        <arg name="init_pose_YAW" value="0" />
     </include>
 
     <!-- gmapping -->
