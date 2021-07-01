@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <!-- <arg name="world_name" default="indoors12" /> -->
-  <arg name="world_name" default="yonlin_2f" />
+  <arg name="world_name" default="yonlin_2f_scale_s" />
   <arg name="gui" default="true" />
   <arg name="run_camera" default="false"/>
 
